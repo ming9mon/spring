@@ -53,7 +53,8 @@
 				alert("중복체크를 해주세요.");
 				return;
 			}else{
-				$('#signFrm').submit();
+				//$('#signFrm').submit();
+				alert("으아");
 			}
 		});
 		
@@ -65,7 +66,10 @@
 					"userId":$('#userId').val()
 				},
 				success: function(data){
-					alert(data);
+					if(data==1){
+						idx=true;
+					}
+					$('#userId').attr("readonly",true);
 				},
 				error: function(){
 					alert("서버에러");
