@@ -13,10 +13,10 @@
 <body>
 	<h1>로그인 페이지</h1>
 	<hr />
-		<%-- <c:choose>
-		<!-- 로그인이 안되어 있으면 -->
-			<c:when test="${sessionScope.userId == null}"> --%>
-				<form id="loginFrm" name="loginFrm">
+		<c:choose>
+			<c:when test="${empty sessionScope.userId}">
+			<!-- 로그인이 안되어 있으면 -->
+				<form id="loginFrm" name="loginFrm" action="loginCheck.do">
 					<table>
 						<tr>
 							<td>아이디</td>
@@ -26,23 +26,34 @@
 							<td>패스워드</td>
 							<td><input type="password" name="passwd" id="passwd" maxlength="20"></td>
 						</tr>
+						<c:if test="${msg == '실패'}">
+							<tr>
+								<td colspan=2>
+									아이디 또는 패스워드가 틀렸습니다.
+								</td>
+							</tr>
+						</c:if>
 						<tr>
-							<td colspan=2>
-								<input type="button" id="aa" value="로그인" />
+							<td>
+								<input type="button" id="login" value="로그인" />
+							</td>
+							<td>
+								<input type="button" id="signUp" value="회원가입" />
 							</td>
 						</tr>
 					</table>
 				</form>
-			<%-- </c:when>
+			</c:when>
 			<c:otherwise>
 				<h3>${sessionScope.userId}님 환영합니다.</h3>
-				<button id="logout">로그아웃</button>
+				<a href="logout.do">로그아웃</a>
 			</c:otherwise>
-		</c:choose> --%>
+		</c:choose>
+		<a href="/study">메인</a>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(e){
-		$('#aa').click(function(){
+		$('#login').click(function(){
 
 			// 입력 값 체크
 			if($.trim($('#userId').val()) == ''){
@@ -54,26 +65,16 @@
 				$('#passwd').focus();
 				return;
 			}
-			//login Check
-			$.ajax({
-				url: "${pageContext.request.contextPath}/loginCheck.do",
-				type: "POST",
-				dataType: "json",
-				data: $('#loginFrm').serializeArray(),
-				success: function(data){
-					console.log(data);
-					if(data==1){
-						
-					}else{
-						alert("아이디 또는 패스워드가 틀렸습니다.");
-					}
-				},
-				error:function(){
-					alert("서버 에러");
-				}
-			});
 			
+			//전송
+			$('#loginFrm').submit();
 		});
+		
+		//회원가입 버튼
+		$('#signUp').click(function() {
+			location.href="signUpPage.do";
+		});
+		
 	});
 </script>
 </html>

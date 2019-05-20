@@ -13,6 +13,7 @@
 
 </head>
 <body>
+	<a href="/study">메인</a>
 	<table border="1" >
 		<tr>
 			<th bgcolor="" width="50">no</th>

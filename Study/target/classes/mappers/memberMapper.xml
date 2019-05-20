@@ -5,15 +5,8 @@
 
 	<select id="loginCheck" resultType="String">
 		<![CDATA[
-			SELECT user_id FROM member
+			SELECT count(*) FROM member
 			WHERE user_id = #{userId} AND passwd = #{passwd}
-		]]>
-	</select>
-	
-	<select id="memberInfo" resultType="MemberVO">
-		<![CDATA[
-			SELECT user_id FROM member
-			WHERE user_id = #{userId}
 		]]>
 	</select>
 

@@ -26,22 +26,32 @@ public class LoginController {
 	
 	//로그인 처리
 	@RequestMapping(value="/loginCheck.do")
-	public String loginCheck(@ModelAttribute MemberVO vo,HttpSession session) {
+	public ModelAndView loginCheck(@ModelAttribute MemberVO vo,HttpSession session) {
 		
 		boolean result = memberService.loginCheck(vo, session);
 		ModelAndView mav = new ModelAndView();
-		System.out.println("result : " + result);
-		/*
-		if(result==true) {
-			mav.addObject("msg","success");
+		
+		mav.setViewName("login");
+		
+		if(result) {
+			mav.addObject("msg","성공");
 		}else {
-			mav.addObject("msg","failure");
+			mav.addObject("msg","실패");
 		}
-		System.out.println("dd");
 		
-		*/
-		return "index";
+		return mav;
+	}
+	
+	//로그아웃 처리
+	@RequestMapping("logout.do")
+	public ModelAndView logout(HttpSession session) {
 		
+		memberService.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		mav.addObject("msg", "logout");
+		
+		return mav;
 	}
 	
 }
