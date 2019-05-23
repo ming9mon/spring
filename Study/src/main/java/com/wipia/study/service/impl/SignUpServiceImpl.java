@@ -2,6 +2,7 @@ package com.wipia.study.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wipia.study.dao.SignUpDAO;
 import com.wipia.study.domain.MemberVO;
@@ -22,7 +23,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 	@Override
 	public void signUp(MemberVO vo) {
-		
+		dao.signUp(vo);
 	}
 
 }

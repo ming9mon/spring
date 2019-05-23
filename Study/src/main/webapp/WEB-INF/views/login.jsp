@@ -47,8 +47,10 @@
 			<c:otherwise>
 				<h3>${sessionScope.userId}님 환영합니다.</h3>
 				<a href="logout.do">로그아웃</a>
+				<a href="secession.do">회원탈퇴</a>
 			</c:otherwise>
 		</c:choose>
+		<hr />
 		<a href="/study">메인</a>
 </body>
 <script type="text/javascript">

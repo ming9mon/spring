@@ -17,10 +17,10 @@ public class MemberDAO {
 	//로그인 체크
 	public boolean loginCheck(MemberVO vo) {
 		System.out.println("===> Mybatis로 loginCheck() 기능 처리");
-		String name = sqlSession.selectOne("memberMapper.loginCheck",vo);
+		int result = sqlSession.selectOne("memberMapper.loginCheck",vo);
 		
 		// 검색이 안되면 0을 반환해주기 때문에 0과 비교해서 참이면 false, 틀리면 true를 반환
-		return (Integer.parseInt(name)==0)?false:true;
+		return (result==0)?false:true;
 	}
 	
 	//로그 아웃

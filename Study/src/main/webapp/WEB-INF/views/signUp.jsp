@@ -15,7 +15,7 @@
 			<tbody>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" id="userId" name="userId"></td>
+					<td><input type="text" id="userId" name="userId" ></td>
 					<td><input type="button" id="check" value="중복체크"></td>
 				</tr>
 				<tr>
@@ -25,6 +25,11 @@
 					<td>패스워드</td>
 					<td colspan="2"><input id="passwd" name="passwd" type="password"></td>
 				</tr>
+				<tr>
+					<td>패스워드 확인</td>
+					<td colspan="2"><input id="passwdCheck" name="passwdCheck" type="password"></td>
+				</tr>
+				
 				<tr>
 					<td colspan="3"><input type="button" id="signUp" value="회원가입"></td>
 				</tr>
@@ -48,28 +53,41 @@
 				$('#passwd').focus();
 				return;
 			}
+			//패스워드 확인
+			else if($('#passwd').val() != $('#passwdCheck').val()){
+				alert('패스워드가 다릅니다.');
+				$('#passwd').focus();
+				return;
+			}
 			
 			if(idx==false){
-				alert("중복체크를 해주세요.");
+				alert("아이디 중복체크를 해주세요.");
 				return;
 			}else{
-				//$('#signFrm').submit();
-				alert("으아");
+				$('#signFrm').submit();
 			}
 		});
 		
 		$('#check').click(function(){
 			$.ajax({
 				url: "${pageContext.request.contextPath}/idCheck.do",
-				type: "POST",
+				type: "GET",
 				data:{
 					"userId":$('#userId').val()
 				},
 				success: function(data){
-					if(data==1){
+					if(data == 0 && $.trim($('#userId').val()) != '' ){
 						idx=true;
+						$('#userId').attr("readonly",true);
+						var html="<tr><td colspan='3' style='color: green'>사용가능</td></tr>";
+						$('#idCheck').empty();
+						$('#idCheck').append(html);
+					}else{
+
+						var html="<tr><td colspan='3' style='color: red'>사용불가능한 아이디 입니다.</td></tr>";
+						$('#idCheck').empty();
+						$('#idCheck').append(html);
 					}
-					$('#userId').attr("readonly",true);
 				},
 				error: function(){
 					alert("서버에러");
@@ -77,8 +95,6 @@
 			});
 			
 
-			var html="<tr><td colspan='3'>사용불가능한 아이디 입니다.</td></tr>";
-			$('#idCheck').appendTo(html);
 		});
 		
 	});

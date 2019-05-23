@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wipia.study.domain.MemberVO;
 import com.wipia.study.service.SignUpService;
@@ -28,19 +29,18 @@ public class SignUpController {
 	@RequestMapping(value = "/signUp.do")
 	public String signUp(MemberVO vo) {
 		
-		
+		service.signUp(vo);
 		
 		return "login";
 	}
 	
-	//produces ajax데이터 넘겨받을때 깨짐 방지
-	@RequestMapping(value = "/idCheck.do",method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	//produces는 ajax가 데이터 넘겨받을때 깨짐 방지
+	@RequestMapping(value = "/idCheck.do",method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String idCheck(HttpServletRequest request) {
 		
 		String userId = request.getParameter("userId");
 		int result=service.idCheck(userId);
-		System.out.println("컨트롤러 리절트 : "+result);
 		return Integer.toString(result);
 	}
 	
