@@ -3,11 +3,12 @@ package com.wipia.study.service;
 import java.util.List;
 
 import com.wipia.study.domain.BoardVO;
+import com.wipia.study.domain.PagingCriteria;
 
 public interface BoardService {
 	
 	// 글 목록 조회
-	List<BoardVO> getBoardList();
+	List<BoardVO> getBoardList(PagingCriteria paging);
 	
 	// 글 상세 조회
 	BoardVO getContent(BoardVO vo);

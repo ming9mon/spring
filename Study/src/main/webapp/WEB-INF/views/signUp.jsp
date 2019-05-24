@@ -36,6 +36,8 @@
 			</tbody>
 		</table>
 	</form>
+	<hr />
+	<a href="/">메인</a>
 </body>
 
 <script type="text/javascript">

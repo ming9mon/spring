@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wipia.study.domain.BoardVO;
+import com.wipia.study.domain.PagingCriteria;
 
 @Repository
 public class BoardDAO{
@@ -34,8 +35,8 @@ public class BoardDAO{
 		return (BoardVO) mybatis.selectOne("BoardMapper.getContent", vo);
 	}
 
-	public List<BoardVO> getBoardList() {
+	public List<BoardVO> getBoardList(PagingCriteria paging) {
 		System.out.println("===> Mybatis로 getBoardList() 기능 처리");
-		return mybatis.selectList("BoardMapper.getBoardList");
+		return mybatis.selectList("BoardMapper.getBoardList",paging);
 	}
 }

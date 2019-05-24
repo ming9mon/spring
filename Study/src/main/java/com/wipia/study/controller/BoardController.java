@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.wipia.study.domain.BoardVO;
+import com.wipia.study.domain.PagingCriteria;
 import com.wipia.study.service.BoardService;
 
 @Controller
@@ -22,9 +23,18 @@ public class BoardController {
 	private BoardService boardService;
 	
 	//글 목록 검색
-	@RequestMapping("/getBoardList.do")
+	/*@RequestMapping("/getBoardList.do")
 	public String getBoardList(BoardVO vo, Model model) {
 		List<BoardVO> boardList = boardService.getBoardList();
+		 
+		// Model 정보 저장
+		model.addAttribute("boardList",boardList);
+		return "boardList"; // View 이름 리턴
+	}*/
+	
+	@RequestMapping("/getBoardList.do")
+	public String getBoardList(BoardVO vo,PagingCriteria paging, Model model) {
+		List<BoardVO> boardList = boardService.getBoardList(paging);
 		 
 		// Model 정보 저장
 		model.addAttribute("boardList",boardList);

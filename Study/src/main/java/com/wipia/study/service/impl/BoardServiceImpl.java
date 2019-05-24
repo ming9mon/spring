@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wipia.study.dao.BoardDAO;
 import com.wipia.study.domain.BoardVO;
+import com.wipia.study.domain.PagingCriteria;
 import com.wipia.study.service.BoardService;
 
 @Service
@@ -16,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
+	public List<BoardVO> getBoardList(PagingCriteria paging) {
+		return boardDAO.getBoardList(paging);
 	}
 	
 	@Override

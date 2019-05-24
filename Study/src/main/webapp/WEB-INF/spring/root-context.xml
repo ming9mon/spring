@@ -14,11 +14,23 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- Oracle JDBC DataSource -->
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+	<!-- <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
 		<property name="username" value="test"/>
 		<property name="password" value="qwe123"/>
+	</bean> -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="test"/>
+		<property name="password" value="qwe123"/>
+	</bean>
+	
+	<!-- HikariCP config -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
 	</bean>
 
     
@@ -32,5 +44,8 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
+	
+	<!-- 지정된 패키지를 조사해 객체 설정에 사용되는 어노테이션들을 가진 클래스들을 파악하고 필요시 객체로 생성해 관리함 -->
+	<context:component-scan base-package="com.wipia.study"></context:component-scan>
 	
 </beans>

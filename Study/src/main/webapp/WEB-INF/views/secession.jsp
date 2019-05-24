@@ -26,8 +26,8 @@
 			</tr>
 		</table>
 	</form>
-	<hr>
-	<a href="/study">메인</a>
+	<hr />
+	<a href="/">메인</a>
 </body>
 
 <script type="text/javascript">

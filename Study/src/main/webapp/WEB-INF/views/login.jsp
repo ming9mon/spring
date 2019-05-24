@@ -51,7 +51,7 @@
 			</c:otherwise>
 		</c:choose>
 		<hr />
-		<a href="/study">메인</a>
+		<a href="/">메인</a>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(e){
