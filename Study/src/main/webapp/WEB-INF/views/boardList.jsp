@@ -6,11 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글 목록</title>
-
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>글 목록</title>
+	<script src="resources/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<a href="/">메인</a>
@@ -27,7 +26,7 @@
 				<c:forEach items="${boardList }" var="board">
 					<tr>
 						<td>${board.idx }</td>
-						<td align="left"><a href="getContent.do?idx=${board.idx }">
+						<td align="left"><a href="${board.idx }">
 								${board.title }</a></td>
 						<td>${board.writer }</td>
 						<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
@@ -44,5 +43,44 @@
 	</table>
 	<br>
 	<a href="writeBoard.do">글 쓰기</a>
+	<div id="pagingDiv">
+			<c:if test="${paging.prev}">
+				<a href="${paging.startPage - 1 }">이전</a>
+			</c:if>
+			<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage }">
+				&nbsp;<a href="${num }">${num }</a>&nbsp;
+			</c:forEach>
+			<c:if test="${paging.next}">
+				<a id="next" href="${paging.endPage + 1 }">다음</a>
+			</c:if>
+	</div>
+	
+	<form id="pagingFrm" name="pagingForm" action="getBoardList.do" method="get">
+		<input type="hidden" id="pageNum" name="pageNum" value="${paging.cri.pageNum }">
+		<input type="hidden" id="amount" name="amount" value="${paging.cri.amount }">
+	</form>
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		//페이지 번호 이동
+		$('#pagingDiv a').click(function(e){
+			e.preventDefault();
+			$('#pageNum').val($(this).attr("href"));
+			pagingForm.submit();
+			
+		});
+		
+		//게시글에 pageNum넘기기
+		$('table a').click(function(e){
+			e.preventDefault();
+			var html = "<input type='hidden' name='idx' value='"+$(this).attr("href")+"'>";
+			$('#pagingFrm').append(html);
+			$('#pagingFrm').attr("action","getContent.do");
+			$('#pagingFrm').submit();
+		});
+	});
+</script>
+
 </html>

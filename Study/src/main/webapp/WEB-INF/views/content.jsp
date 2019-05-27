@@ -45,13 +45,18 @@
 	<hr>
 	<a href="writeBoard.do">글 쓰기</a>&nbsp;&nbsp;&nbsp; 
 	<a href="deleteBoard.do?idx=${board.idx }">글 삭제</a>&nbsp;&nbsp;&nbsp;
-	<a href="getBoardList.do">글 목록</a>
+	<a id="list" href="getBoardList.do">글 목록</a>
 </body>
 <script type="text/javascript">
 	$(document).ready(function (e){
+		
+		//수정하기 버튼
 		$('#modify').click(function(){
 			var frmArr = ["title","content"];
 
+			$('#frm').append("<input type='hidden' name='pageNum' value='<c:out value='${cri.pageNum }'/>'>");
+			$('#frm').append("<input type='hidden' name='amount' value='<c:out value='${cri.amount }'/>'>");
+			
 			//입력 값 널 체크
 			for(var i=0;i<frmArr.length;i++){
 				//alert(arr[i]);
@@ -61,9 +66,21 @@
 					return false;
 				}
 			}
-
 			//전송
 			$('#frm').submit();
+		});
+		
+		//글 목록
+		$('#list').click(function(e){
+			e.preventDefault();
+			var $form = $('<form></form>');
+			$form.attr('action','getBoardList.do');
+			$form.attr('method','get');
+			$form.appendTo('body');
+			
+			$form.append("<input type='hidden' name='pageNum' value='<c:out value='${cri.pageNum}'/>'>");
+			$form.append("<input type='hidden' name='amount' value='<c:out value='${cri.amount}'/>'>");
+			$form.submit();
 		});
 	});
 </script>

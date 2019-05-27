@@ -20,9 +20,9 @@ public class BoardDAO{
 		mybatis.insert("BoardMapper.insertBoard", vo);
 	}
 
-	public void updateBoard(BoardVO vo) {
+	public boolean updateBoard(BoardVO vo) {
 		System.out.println("===> Mybatis로 updateBoard() 기능 처리");
-		mybatis.update("BoardMapper.updateBoard", vo);
+		return mybatis.update("BoardMapper.updateBoard", vo) == 1;
 	}
 
 	public void deleteBoard(BoardVO vo) {
@@ -39,4 +39,10 @@ public class BoardDAO{
 		System.out.println("===> Mybatis로 getBoardList() 기능 처리");
 		return mybatis.selectList("BoardMapper.getBoardList",paging);
 	}
+	
+	public int totalCnt() {
+		System.out.println("===> Mybatis로 totalCnt");
+		return mybatis.selectOne("BoardMapper.getTotalCnt");
+	}
+	
 }

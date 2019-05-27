@@ -17,10 +17,12 @@ public interface BoardService {
 	void insertBoard(BoardVO vo);
 
 	// 글 수정
-	void updateBoard(BoardVO vo);
+	boolean updateBoard(BoardVO vo);
 
 	// 글 삭제
 	void deleteBoard(BoardVO vo);
 	
+	//글 갯수
+	int totalCnt();
 	
 }
