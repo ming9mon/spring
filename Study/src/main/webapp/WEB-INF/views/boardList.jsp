@@ -42,7 +42,7 @@
 		</c:choose>
 	</table>
 	<br>
-	<a href="writeBoard.do">글 쓰기</a>
+	<a href="writeBoard.do">글 쓰기</a><br>
 	<div id="pagingDiv">
 			<c:if test="${paging.prev}">
 				<a href="${paging.startPage - 1 }">이전</a>
@@ -58,7 +58,26 @@
 	<form id="pagingFrm" name="pagingForm" action="getBoardList.do" method="get">
 		<input type="hidden" id="pageNum" name="pageNum" value="${paging.cri.pageNum }">
 		<input type="hidden" id="amount" name="amount" value="${paging.cri.amount }">
+		<input type="hidden" id="type" name="type" value="${paging.cri.type }">
+		<input type="hidden" id="keyword" name="keyword" value="${paging.cri.keyword }">
 	</form>
+	<br>
+	<!-- 검색 form -->
+	<div id="search">
+		<form id="searchForm" action="getBoardList.do" method="get">
+			<select name="type">
+				<option value="" <c:out value="${paging.cri.type == null?'selected':'' }" />>선택</option>
+				<option value="T" <c:out value="${paging.cri.type eq 'T'?'selected':'' }" />>제목</option>
+				<option value="C" <c:out value="${paging.cri.type eq 'C'?'selected':'' }" />>내용</option>
+				<option value="W" <c:out value="${paging.cri.type eq 'W'?'selected':'' }" />>작성자</option>
+				<option value="TC" <c:out value="${paging.cri.type eq 'TC'?'selected':'' }" />>제목 + 내용</option>
+				<option value="TW" <c:out value="${paging.cri.type eq 'TW'?'selected':'' }" />>제목 + 작성자</option>
+				<option value="TCW" <c:out value="${paging.cri.type eq 'TCW'?'selected':'' }" />>제목 + 내용 + 작성자</option>
+			</select>
+			<input type="text" name="keyword" />
+			<button id="searchBtn">검색</button>
+		</form>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -80,6 +99,7 @@
 			$('#pagingFrm').attr("action","getContent.do");
 			$('#pagingFrm').submit();
 		});
+		
 	});
 </script>
 

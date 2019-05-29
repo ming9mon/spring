@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wipia.study.dao.BoardDAO;
 import com.wipia.study.domain.BoardVO;
-import com.wipia.study.domain.PagingCriteria;
+import com.wipia.study.domain.Criteria;
 import com.wipia.study.service.BoardService;
 
 @Service
@@ -17,7 +17,7 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	
 	@Override
-	public List<BoardVO> getBoardList(PagingCriteria paging) {
+	public List<BoardVO> getBoardList(Criteria paging) {
 		return boardDAO.getBoardList(paging);
 	}
 	
@@ -42,8 +42,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int totalCnt() {
-		return boardDAO.totalCnt();
+	public int totalCnt(Criteria cri) {
+		return boardDAO.totalCnt(cri);
 	}
 	
 

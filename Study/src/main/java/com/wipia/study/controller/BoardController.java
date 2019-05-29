@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wipia.study.domain.BoardVO;
 import com.wipia.study.domain.PageMaker;
-import com.wipia.study.domain.PagingCriteria;
+import com.wipia.study.domain.Criteria;
 import com.wipia.study.service.BoardService;
 
 @Controller
@@ -26,12 +26,11 @@ public class BoardController {
 	
 	//글 목록
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(PagingCriteria cri, Model model) {
+	public String getBoardList(Criteria cri, Model model) {
 		
 		List<BoardVO> boardList = boardService.getBoardList(cri);
 		
-		int total = boardService.totalCnt();
-		
+		int total = boardService.totalCnt(cri);
 		// Model 정보 저장
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("paging",new PageMaker(cri,total));
@@ -40,7 +39,7 @@ public class BoardController {
 	
 	// 글 상세 조회
 	@RequestMapping("/getContent.do")
-	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") PagingCriteria cri) {
+	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") Criteria cri) {
 		model.addAttribute("board", boardService.getContent(vo)); // Model 정보 저장
 		return "content"; // View 이름 리턴
 	}
@@ -62,7 +61,7 @@ public class BoardController {
 
 	// 글 수정
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("board") BoardVO vo, @ModelAttribute("cri") PagingCriteria cri,RedirectAttributes rttr) {
+	public String updateBoard(@ModelAttribute("board") BoardVO vo, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
 		
 		if(boardService.updateBoard(vo)) {
 			rttr.addFlashAttribute("result","success");

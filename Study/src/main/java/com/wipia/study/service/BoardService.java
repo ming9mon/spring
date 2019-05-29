@@ -3,12 +3,12 @@ package com.wipia.study.service;
 import java.util.List;
 
 import com.wipia.study.domain.BoardVO;
-import com.wipia.study.domain.PagingCriteria;
+import com.wipia.study.domain.Criteria;
 
 public interface BoardService {
 	
 	// 글 목록 조회
-	List<BoardVO> getBoardList(PagingCriteria paging);
+	List<BoardVO> getBoardList(Criteria paging);
 	
 	// 글 상세 조회
 	BoardVO getContent(BoardVO vo);
@@ -23,6 +23,6 @@ public interface BoardService {
 	void deleteBoard(BoardVO vo);
 	
 	//글 갯수
-	int totalCnt();
+	int totalCnt(Criteria cri);
 	
 }
