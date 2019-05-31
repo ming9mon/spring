@@ -14,24 +14,24 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- Oracle JDBC DataSource -->
-	<!-- <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
 		<property name="username" value="test"/>
 		<property name="password" value="qwe123"/>
-	</bean> -->
+	</bean>
 	
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	<!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
 		<property name="username" value="ming9"/>
 		<property name="password" value="qwe123"/>
 	</bean>
 	
-	<!-- HikariCP config -->
+	HikariCP config
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
-	</bean>
+	</bean> -->
 
     
 	<!-- mybatis SqlSessionFactoryBean -->
