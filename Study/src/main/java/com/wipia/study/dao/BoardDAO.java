@@ -30,7 +30,7 @@ public class BoardDAO{
 		mybatis.delete("BoardMapper.deleteBoard", vo);
 	}
 
-	public BoardVO getContent(BoardVO vo) {
+	public BoardVO getContent(BoardVO vo){
 		System.out.println("===> Mybatis로 getContent() 기능 처리");
 		return (BoardVO) mybatis.selectOne("BoardMapper.getContent", vo);
 	}

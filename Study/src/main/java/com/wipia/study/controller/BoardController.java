@@ -39,7 +39,7 @@ public class BoardController {
 	
 	// 글 상세 조회
 	@RequestMapping("/getContent.do")
-	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") Criteria cri) {
+	public String getBoard(BoardVO vo, Model model, @ModelAttribute("cri") Criteria cri) throws Exception{
 		model.addAttribute("board", boardService.getContent(vo)); // Model 정보 저장
 		return "content"; // View 이름 리턴
 	}

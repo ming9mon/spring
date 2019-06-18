@@ -48,4 +48,7 @@
 	<!-- 지정된 패키지를 조사해 객체 설정에 사용되는 어노테이션들을 가진 클래스들을 파악하고 필요시 객체로 생성해 관리함 -->
 	<context:component-scan base-package="com.wipia.study"></context:component-scan>
 	
+	<!-- @Aspect 어노테이션을 통해 어드바이스가 동작 하도록 -->
+	<aop:aspectj-autoproxy />
+	
 </beans>
