@@ -27,7 +27,7 @@
 			</tr>
 			<tr>
 				<td bgcolor="orange">내용</td>
-				<td align="left"><textarea id="" name="" cols="40" rows="10">${board.content }</textarea></td>
+				<td align="left"><textarea id="content" name="content" cols="40" rows="10">${board.content }</textarea></td>
 			</tr>
 			<tr>
 				<td bgcolor="orange">등록일</td>
@@ -52,7 +52,7 @@
 		
 		//수정하기 버튼
 		$('#modify').click(function(){
-			var frmArr = ["title",""];
+			var frmArr = ["title","content"];
 
 			$('#frm').append("<input type='hidden' name='pageNum' value='<c:out value='${cri.pageNum }'/>'>");
 			$('#frm').append("<input type='hidden' name='amount' value='<c:out value='${cri.amount }'/>'>");

@@ -11,7 +11,7 @@ public interface BoardService {
 	List<BoardVO> getBoardList(Criteria paging);
 	
 	// 글 상세 조회
-	BoardVO getContent(BoardVO vo);
+	BoardVO getContent(BoardVO vo) throws Exception;
 	
 	// 글 등록
 	void insertBoard(BoardVO vo);

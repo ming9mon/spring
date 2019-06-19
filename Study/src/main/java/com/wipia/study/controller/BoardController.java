@@ -48,8 +48,9 @@ public class BoardController {
 	@RequestMapping(value="/insertBoard.do", method=RequestMethod.POST) 
 	public String insertBoard(BoardVO vo) throws IOException {
 			
-			boardService.insertBoard(vo); 
-			return "redirect:getBoardList.do"; 
+			//boardService.insertBoard(vo); 
+			//return "redirect:getBoardList.do";
+		return "insertBoard";
 	}
 	
 	// 글 쓰기 페이지 이동

@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public BoardVO getContent(BoardVO vo) {
+	public BoardVO getContent(BoardVO vo)  {
 		return boardDAO.getContent(vo);
 	}
 
