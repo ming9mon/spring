@@ -72,4 +72,20 @@
 		<include refid="criteria"></include>
 		idx>0
 	</select>
+	
+	<select id="getBno" resultType="long">
+		<![CDATA[
+		SELECT idx
+		FROM boardTest
+		WHERE ROWNUM < 2
+		ORDER BY 1 DESC
+		]]>
+	</select>
+	
+	<insert id="insertAttach" parameterType="FileVO">
+		<foreach item="item" index="index" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+		INTO attachments(uuid,path,name,bno)
+		VALUES (#{item.uuid},#{item.path},#{item.fileName},#{item.bno})
+		</foreach>
+	</insert>	
 </mapper>

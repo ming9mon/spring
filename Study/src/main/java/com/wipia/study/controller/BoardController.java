@@ -1,6 +1,9 @@
 package com.wipia.study.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wipia.study.domain.BoardVO;
@@ -46,11 +50,10 @@ public class BoardController {
 	
 	// 글 쓰기
 	@RequestMapping(value="/insertBoard.do", method=RequestMethod.POST) 
-	public String insertBoard(BoardVO vo) throws IOException {
+	public String insertBoard(BoardVO vo,MultipartFile[] uploadFile) throws IOException {
+			boardService.insertBoard(vo,uploadFile); 
 			
-			//boardService.insertBoard(vo); 
-			//return "redirect:getBoardList.do";
-		return "insertBoard";
+			return "redirect:getBoardList.do";
 	}
 	
 	// 글 쓰기 페이지 이동

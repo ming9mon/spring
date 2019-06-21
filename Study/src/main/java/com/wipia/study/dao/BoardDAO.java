@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.wipia.study.domain.BoardVO;
 import com.wipia.study.domain.Criteria;
+import com.wipia.study.domain.FileVO;
 
 @Repository
 public class BoardDAO{
@@ -43,6 +44,14 @@ public class BoardDAO{
 	public int totalCnt(Criteria cri) {
 		System.out.println("===> Mybatis로 totalCnt");
 		return mybatis.selectOne("BoardMapper.getTotalCnt",cri);
+	}
+
+	public long getBno() {
+		return mybatis.selectOne("BoardMapper.getBno");
+	}
+
+	public void insertAttach(List<FileVO> list) {
+		mybatis.insert("BoardMapper.insertAttach",list);
 	}
 	
 }

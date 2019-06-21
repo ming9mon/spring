@@ -2,6 +2,8 @@ package com.wipia.study.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.wipia.study.domain.BoardVO;
 import com.wipia.study.domain.Criteria;
 
@@ -14,7 +16,7 @@ public interface BoardService {
 	BoardVO getContent(BoardVO vo) throws Exception;
 	
 	// 글 등록
-	void insertBoard(BoardVO vo);
+	void insertBoard(BoardVO vo, MultipartFile[] uploadFile);
 
 	// 글 수정
 	boolean updateBoard(BoardVO vo);
