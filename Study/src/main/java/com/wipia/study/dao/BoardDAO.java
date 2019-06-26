@@ -53,5 +53,16 @@ public class BoardDAO{
 	public void insertAttach(List<FileVO> list) {
 		mybatis.insert("BoardMapper.insertAttach",list);
 	}
+
+	public List<FileVO> findByBno(long bno) {
+		return mybatis.selectList("BoardMapper.findByBno", bno);
+	}
 	
+	public boolean selectAttach(long bno) {
+		return mybatis.selectOne("BoardMapper.selectAttach",bno);
+	}
+	
+	public void delAttach(long bno) {
+		mybatis.delete("BoardMapper.delAttach",bno);
+	}
 }

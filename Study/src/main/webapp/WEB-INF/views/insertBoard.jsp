@@ -129,7 +129,7 @@
 					} 
 					reader.readAsDataURL(f);
 				}else{
-					str += '<img src="resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
+					str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
 					$(str).appendTo('#preview');
 				}
 			});//arr.forEach

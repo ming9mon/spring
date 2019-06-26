@@ -23,6 +23,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<resources location="file:///D:/upload/" mapping="/img/**"></resources>
+	
 	<context:component-scan base-package="com.wipia.study" />
 	
 	<aop:aspectj-autoproxy />

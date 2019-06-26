@@ -84,8 +84,29 @@
 	
 	<insert id="insertAttach" parameterType="FileVO">
 		<foreach item="item" index="index" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
-		INTO attachments(uuid,path,name,bno)
+		INTO attachments(uuid,path,file_name,bno)
 		VALUES (#{item.uuid},#{item.path},#{item.fileName},#{item.bno})
 		</foreach>
-	</insert>	
+	</insert>
+	
+	<select id="findByBno" resultType="FileVO">
+		<![CDATA[
+		SELECT * FROM attachments WHERE bno = #{bno}
+		]]>
+	</select>
+	
+	<select id="selectAttach" resultType="boolean" parameterType="long">
+		<![CDATA[
+		SELECT count(*)
+		FROM attachments
+		WHERE bno=#{bno} and rownum < 2
+		]]>
+	</select>
+	
+	<delete id="delAttach" parameterType="long">
+		<![CDATA[
+		DELETE FROM attachments
+		WHERE bno=#{bno}
+		]]>
+	</delete>
 </mapper>

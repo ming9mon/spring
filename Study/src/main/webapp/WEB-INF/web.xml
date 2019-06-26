@@ -28,12 +28,9 @@
 	<!-- 파일 업로드 설정 -->
 	<multipart-config>
 		<location>D:\\upload</location>
-	 	<!-- 1MB * 20 = 20MB  -->
-		<max-file-size>20971520</max-file-size>
-		<!--  60MB  -->
-		<max-request-size>62914560‬</max-request-size>
-		<!--  20MB  -->
-		<file-size-threshold>20971520</file-size-threshold>
+		<max-file-size>20971520</max-file-size><!-- 1MB * 20 = 20MB  -->
+		<max-request-size>62914560‬</max-request-size><!--  60MB  -->
+		<file-size-threshold>20971520</file-size-threshold><!--  20MB  -->
 	</multipart-config>
 		
 	<servlet-mapping>
